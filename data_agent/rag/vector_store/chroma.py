@@ -198,8 +198,9 @@ class ChromaVectorStore(BaseVectorStore):
             bool: Success status
         """
         try:
-            self.client.persist()
-            logger.info("Persisted Chroma collection to disk")
+            # For newer versions of Chroma, data is automatically persisted
+            # when using a PersistentClient, so no explicit persist is needed
+            logger.info("Chroma collection data is automatically persisted to disk")
             return True
         except Exception as e:
             logger.error(f"Error persisting Chroma collection: {str(e)}")
