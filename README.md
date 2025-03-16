@@ -2,8 +2,9 @@
 
 A RAG-powered (Retrieval-Augmented Generation) AI agent specialized in Data Engineering, capable of querying Snowflake metadata, Git repositories, dbt YAML files, and other relevant resources for data engineers.
 
-## Overview
+![alt text](neuralflake.jpg)
 
+## Overview
 This project implements an intelligent agent that combines:
 - RAG capabilities for querying and retrieving technical information
 - Autonomous operation to perform analyses and suggest actions
@@ -95,6 +96,105 @@ This project implements an intelligent agent that combines:
 - [ ] End-to-end demonstrations
 - [ ] Framework for extensions and plugins
 - [ ] Contribution guidelines
+
+## Usage Guide
+
+### Setting Up the Environment
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/davidamom/neuralflake.git
+   cd neuralflake
+   ```
+
+2. **Create and activate a virtual environment:**
+   ```bash
+   # Using venv
+   python -m venv .venv
+   
+   # On Windows
+   .venv\Scripts\activate
+   
+   # On macOS/Linux
+   source .venv/bin/activate
+   ```
+
+3. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+   
+   Alternative with Poetry:
+   ```bash
+   poetry install
+   ```
+
+### Configuration
+
+1. **Set up environment variables:**
+   ```bash
+   cp .env.example .env
+   ```
+   
+2. **Edit the `.env` file** to add your OpenAI API key:
+   ```
+   OPENAI_API_KEY=your_api_key_here
+   ```
+
+### Running NeuralFlake
+
+1. **Verify the installation:**
+   ```bash
+   python -m data_agent.cli --help
+   ```
+   This will display all available commands.
+
+2. **Index documents** (required for RAG functionality):
+   ```bash
+   # Index the NeuralFlake codebase itself
+   python -m data_agent.cli index ./data_agent
+   ```
+   This indexes the source code for context-aware responses.
+
+3. **Start an interactive chat session:**
+   ```bash
+   python -m data_agent.cli chat
+   ```
+   
+   Or, if using Poetry:
+   ```bash
+   poetry run neuralflake chat
+   ```
+
+### Usage Examples
+
+1. **Basic chat (without RAG):**
+   ```bash
+   python -m data_agent.cli chat --no-rag
+   ```
+   Try asking general questions about data engineering.
+
+2. **Chat with RAG capabilities:**
+   ```bash
+   python -m data_agent.cli chat
+   ```
+   Try questions about the codebase, such as:
+   - "How does the chunking system work?"
+   - "Explain the structure of the agent"
+   - "What are the main classes in the RAG system?"
+
+3. **Single query mode:**
+   ```bash
+   python -m data_agent.cli query "How does ChromaVectorStore work?"
+   ```
+
+### Special Commands in Chat Mode
+
+- `/help` - Display available commands
+- `/clear` - Clear conversation history
+- `/save <filename>` - Save conversation to file
+- `/load <filename>` - Load conversation from file
+- `exit`, `quit`, `q`, `bye` - End the conversation
 
 ## Requirements
 
