@@ -2,7 +2,7 @@
 
 A RAG-powered (Retrieval-Augmented Generation) AI agent specialized in Data Engineering, capable of querying Snowflake metadata, Git repositories, dbt YAML files, and other relevant resources for data engineers.
 
-![alt text](neuralflake.jpg)
+![alt text](<assets/NeuralFlake - Components of a NeuralFlake AI Agent.svg>)
 
 ## Overview
 This project implements an intelligent agent that combines:
@@ -46,16 +46,18 @@ This project implements an intelligent agent that combines:
 - **Python-dotenv**: Environment variable management
 - **Python-jose** or **PyJWT**: For JWT authentication
 
+![alt text](<assets/NeuralFlake - Comprehensive Tech Stack for Software Development.svg>)
+
 ## Development Roadmap
 
 ### Phase 1: Foundation (MVP)
 - [x] Project structure definition
-- [ ] Core agent implementation with basic capabilities
-- [ ] Simple RAG system with a single data source (e.g., local documents)
-- [ ] LLM integration (OpenAI GPT-4)
-- [ ] Basic CLI for agent interaction
-- [ ] Unit test configuration
-- [ ] Initial documentation
+- [x] Core agent implementation with basic capabilities
+- [x] Simple RAG system with a single data source (e.g., local documents)
+- [x] LLM integration (OpenAI GPT-4)
+- [x] Basic CLI for agent interaction
+- [x] Unit test configuration
+- [x] Initial documentation
 
 ### Phase 2: Main Connectors
 - [ ] Snowflake connector implementation
@@ -225,6 +227,8 @@ When you run `index` command, NeuralFlake processes your documents through these
      - Associated metadata
    - All data is persisted locally on disk
 
+![alt text](<assets/NeuralFlake - NeuralFlake Indexing Process.svg>)
+
 ### Retrieval Process
 
 When you ask questions in `chat` mode, NeuralFlake follows these steps:
@@ -249,6 +253,8 @@ When you ask questions in `chat` mode, NeuralFlake follows these steps:
 5. **Conversation Management**:
    - Your question and the agent's response are added to conversation history
    - This history maintains context between interactions
+
+![alt text](<assets/NeuralFlake - NeuralFlake Retrieval Process.svg>)
 
 ### Data Flow
 
@@ -280,7 +286,7 @@ This RAG process allows NeuralFlake to provide responses informed by your docume
 6. Clear and comprehensive documentation
 7. Automated testing (>80% coverage)
 
-## Suggested Project Structure
+## Initial Project Structure
 
 ```
 data_agent/
