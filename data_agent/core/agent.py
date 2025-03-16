@@ -1,7 +1,7 @@
 """
 Core agent implementation.
 
-This module contains the main agent class that orchestrates
+This module contains the main NeuralFlake agent class that orchestrates
 interactions between different components.
 """
 
@@ -18,7 +18,7 @@ from .config import config
 
 class DataAgent:
     """
-    Core Data Engineering Agent implementation.
+    Core NeuralFlake implementation.
     
     This class orchestrates interactions between the LLM, RAG system,
     and various data connectors.
@@ -104,7 +104,7 @@ class DataAgent:
         Returns:
             str: Prompt with context
         """
-        return f"""You are a Data Engineering assistant that helps with analysis and suggestions.
+        return f"""You are NeuralFlake, a Data Engineering assistant that helps with analysis and suggestions.
 Please use the following context to answer the query.
 
 CONTEXT:
@@ -164,7 +164,7 @@ Provide a helpful, accurate, and concise response based on the context provided.
         messages = [
             {
                 "role": "system",
-                "content": f"""You are a Data Engineering assistant that helps with analysis and suggestions.
+                "content": f"""You are NeuralFlake, a Data Engineering assistant that helps with analysis and suggestions.
 You provide helpful, accurate, and concise responses.
 """
             }

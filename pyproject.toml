@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "data-agent"
+name = "neuralflake"
 version = "0.1.0"
 description = "A RAG-powered AI agent specialized in Data Engineering"
 authors = ["Your Name <your.email@example.com>"]
@@ -30,7 +30,7 @@ isort = "^5.0.0"
 mypy = "^1.0.0"
 
 [tool.poetry.scripts]
-data-agent = "data_agent.cli:app"
+neuralflake = "data_agent.cli:app"
 
 [build-system]
 requires = ["poetry-core"]

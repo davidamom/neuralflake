@@ -1,5 +1,5 @@
 """
-Command-line interface for the Data Engineering Agent.
+Command-line interface for NeuralFlake.
 
 This module provides a CLI interface for interacting with the agent.
 """
@@ -24,7 +24,7 @@ from .utils.helpers import ensure_directory, get_timestamp
 from .utils.logging import logger, setup_logging
 
 # Initialize the Typer app
-app = typer.Typer(help="Data Engineering Agent CLI")
+app = typer.Typer(help="NeuralFlake - Data Engineering Agent CLI")
 console = Console()
 
 
@@ -37,7 +37,7 @@ def chat(
     Start an interactive chat session with the agent.
     """
     console.print(Panel.fit(
-        "Data Engineering Agent CLI - Interactive Chat",
+        "NeuralFlake - Interactive Chat",
         subtitle="Type 'exit' or 'quit' to end the conversation"
     ))
     

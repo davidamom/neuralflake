@@ -1,4 +1,4 @@
-# Data Engineering Agent
+# NeuralFlake
 
 A RAG-powered (Retrieval-Augmented Generation) AI agent specialized in Data Engineering, capable of querying Snowflake metadata, Git repositories, dbt YAML files, and other relevant resources for data engineers.
 
@@ -226,4 +226,7 @@ TBD - Will be defined as the project progresses.
 
 ## License
 
-This project is licensed under [insert license]. 
+This project is licensed under [insert license].
+
+[tool.poetry.scripts]
+neuralflake = "data_agent.cli:app" 
