@@ -196,6 +196,70 @@ This project implements an intelligent agent that combines:
 - `/load <filename>` - Load conversation from file
 - `exit`, `quit`, `q`, `bye` - End the conversation
 
+## How it Works
+
+### Indexing Process
+
+When you run `index` command, NeuralFlake processes your documents through these steps:
+
+1. **Document Collection**:
+   - The `DocumentProcessor` reads files from the specified directory
+   - Identifies file types (.py, .md, .json, etc.)
+   - Extracts raw text content from each file
+
+2. **Chunking (Text Splitting)**:
+   - Each document is divided into smaller "chunks" (~1000 characters by default)
+   - Chunks have overlap to preserve context between divisions
+   - Metadata is added to each chunk (file source, file type, chunk position)
+
+3. **Embedding Generation**:
+   - Each text chunk is sent to the OpenAI API
+   - The API returns an embedding vector (1536 dimensions for ada-002)
+   - These vectors capture the semantic meaning of the text
+
+4. **Chroma Storage**:
+   - The Chroma vector database creates a collection in `./data/chroma` (configurable)
+   - For each chunk, it stores:
+     - The original text
+     - The embedding vector
+     - Associated metadata
+   - All data is persisted locally on disk
+
+### Retrieval Process
+
+When you ask questions in `chat` mode, NeuralFlake follows these steps:
+
+1. **Query Processing**:
+   - Your question is converted to an embedding using the same API
+   - This embedding represents the semantic meaning of your question
+
+2. **Similarity Search**:
+   - `ChromaVectorStore` calculates cosine similarity between your question's embedding and all stored embeddings
+   - Selects the most similar documents (top_k=4 by default)
+
+3. **Context Assembly**:
+   - Retrieved chunks are concatenated
+   - This relevant context is added to the prompt sent to the LLM
+
+4. **Response Generation**:
+   - The LLM (OpenAI) receives your original question + the relevant context
+   - Generates a response informed by the retrieved documents
+   - The response is displayed in the console
+
+5. **Conversation Management**:
+   - Your question and the agent's response are added to conversation history
+   - This history maintains context between interactions
+
+### Data Flow
+
+```
+[Your Files] → DocumentProcessor → Text Chunks → EmbeddingProvider → Vectors → ChromaVectorStore
+
+[Your Question] → Embedding → ChromaVectorStore → Relevant Documents → Augmented Prompt → LLM → Response
+```
+
+This RAG process allows NeuralFlake to provide responses informed by your documents, without having been pre-trained on them.
+
 ## Requirements
 
 ### Functional Requirements
